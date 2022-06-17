@@ -19,6 +19,7 @@
 		C3E0A0F5283AE6CB001A41D6 /* QuizYUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0A0F4283AE6CB001A41D6 /* QuizYUITests.swift */; };
 		C3E0A0F7283AE6CB001A41D6 /* QuizYUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0A0F6283AE6CB001A41D6 /* QuizYUITestsLaunchTests.swift */; };
 		C3F0D75A283AFFB20056DAC6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0D759283AFFB20056DAC6 /* Extension.swift */; };
+		C3F0D75C283FBD9A0056DAC6 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0D75B283FBD9A0056DAC6 /* CustomCell.swift */; };
 		FC080E3C23E7FF251F42F1AE /* Pods_QuizYTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 116B2A392BFC6AE68E6BEC74 /* Pods_QuizYTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		C3E0A0F4283AE6CB001A41D6 /* QuizYUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizYUITests.swift; sourceTree = "<group>"; };
 		C3E0A0F6283AE6CB001A41D6 /* QuizYUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizYUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C3F0D759283AFFB20056DAC6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		C3F0D75B283FBD9A0056DAC6 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		E0AB7E535A165CC4F6EF1C31 /* Pods-QuizYTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizYTests.release.xcconfig"; path = "Target Support Files/Pods-QuizYTests/Pods-QuizYTests.release.xcconfig"; sourceTree = "<group>"; };
 		F6BB61E3CEF158A8BFF2E38F /* Pods_QuizY.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuizY.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 				C3E0A0DC283AE6CA001A41D6 /* Assets.xcassets */,
 				C3E0A0DE283AE6CA001A41D6 /* LaunchScreen.storyboard */,
 				C3E0A0E1283AE6CA001A41D6 /* Info.plist */,
+				C3F0D75B283FBD9A0056DAC6 /* CustomCell.swift */,
 			);
 			path = QuizY;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			buildConfigurationList = C3E0A0FA283AE6CB001A41D6 /* Build configuration list for PBXNativeTarget "QuizY" */;
 			buildPhases = (
 				F2386E9266D75B98E2271EE6 /* [CP] Check Pods Manifest.lock */,
+				C3BC61D6285791B60038966D /* SwiftLint */,
 				C3E0A0CC283AE6CA001A41D6 /* Sources */,
 				C3E0A0CD283AE6CA001A41D6 /* Frameworks */,
 				C3E0A0CE283AE6CA001A41D6 /* Resources */,
@@ -341,6 +345,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuizY-QuizYUITests/Pods-QuizY-QuizYUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C3BC61D6285791B60038966D /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
 		DD8596727116166BF3F926E9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -411,6 +433,7 @@
 			files = (
 				C3F0D75A283AFFB20056DAC6 /* Extension.swift in Sources */,
 				C3E0A0D8283AE6CA001A41D6 /* ViewController.swift in Sources */,
+				C3F0D75C283FBD9A0056DAC6 /* CustomCell.swift in Sources */,
 				C3E0A0D4283AE6CA001A41D6 /* AppDelegate.swift in Sources */,
 				C3E0A0D6283AE6CA001A41D6 /* SceneDelegate.swift in Sources */,
 			);
