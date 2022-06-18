@@ -23,3 +23,13 @@ extension UIView {
         #endif
     }
 }
+
+extension CustomCell {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = 15
+        self.layer.masksToBounds = true
+    }
+}
+
+

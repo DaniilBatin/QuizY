@@ -12,7 +12,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
    
     
 
-    private var items = ["text", "my", "hello"]
+    private var categoryArray = [Category]()
     
     private lazy var mainCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -25,7 +25,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: "MyReuseID")
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = .systemBackground
         return collectionView
     }()
     
@@ -34,11 +34,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         setupSubviews()
         setupConstraints()
+        createCategoryArray()
+        
        
-        print(view.frame.width)
     }
 
-    // две функции сделать addSubview и addConstraints
+
     private func setupSubviews() {
         view.addSubview(mainCollectionView)
         view.backgroundColor = .systemBackground
@@ -53,17 +54,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
        
     
+    
+    private func createCategoryArray() {
+        let categoryNameArray = ["Geography", "Just desserts", "Lakes, rivers", "Word origins", "People",
+                           "Sports stars", "The elements", "Movies", "Stock symbols", "Pop music"]
+   
+        for index in categoryNameArray {
+            let categoryItem = Category()
+            categoryItem.name = index
+            categoryItem.imageLogo = UIImage(named: index)
+            categoryArray.insert(categoryItem, at: 0)
+        }
+    }
+    
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return categoryArray.count
     }
 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyReuseID", for: indexPath) as? CustomCell else {return UICollectionViewCell()}
-//        cell.configure(with: items[indexPath.item])
-        cell.backgroundColor = .blue
+        cell.configure(with: categoryArray[indexPath.item])
+        cell.backgroundColor = .systemGray
 
         
         return cell

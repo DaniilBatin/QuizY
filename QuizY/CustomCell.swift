@@ -6,39 +6,64 @@
 //
 
 import UIKit
+import SnapKit
 
 class CustomCell: UICollectionViewCell {
     
     private lazy var categoryNameLabel: UILabel = {
         let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 20)
+        label.textColor = .darkGray
+        label.textAlignment = .center
         return label
+    }()
+    
+    private lazy var categoryLogo: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.layer.cornerRadius = 15
-        self.layer.masksToBounds = true
+
         setupSubviews()
-        setupConstrains()
-        
+        setupConstraints()
+       
+
+
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupSubviews()
-        setupConstrains()
+        setupConstraints()
     }
     
-    func configure(with model: String){
-        categoryNameLabel.text = model
+    func configure(with model:  Category){
+        categoryNameLabel.text = model.name
+        categoryLogo.image = model.imageLogo
+
     }
     
     
     private func setupSubviews() {
         contentView.addSubview(categoryNameLabel)
+        contentView.addSubview(categoryLogo)
     }
     
-    private func setupConstrains() {
+    private func setupConstraints() {
+        categoryNameLabel.snp.makeConstraints { maker in
+            maker.left.equalToSuperview().inset(15)
+            maker.right.equalToSuperview().inset(15)
+            maker.bottom.equalToSuperview().inset(5)
+        }
         
+        categoryLogo.snp.makeConstraints { maker in
+            maker.top.equalToSuperview().inset(15)
+            maker.left.equalToSuperview().inset(15)
+            maker.right.equalToSuperview().inset(15)
+            maker.bottom.equalTo(categoryNameLabel).inset(30)
+        }
     }
 }
