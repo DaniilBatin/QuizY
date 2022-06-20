@@ -24,14 +24,12 @@ class CustomCell: UICollectionViewCell {
         return imageView
     }()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         setupSubviews()
         setupConstraints()
-       
-
-
     }
     
     required init?(coder: NSCoder) {
@@ -40,18 +38,20 @@ class CustomCell: UICollectionViewCell {
         setupConstraints()
     }
     
-    func configure(with model:  Category){
-        categoryNameLabel.text = model.name
-        categoryLogo.image = model.imageLogo
+    // Function which take some string
+    func configure(with model:  String){
+        categoryNameLabel.text = model
+        categoryLogo.image = UIImage(named: model)
 
     }
     
-    
+    // Function which setup subviews on content view
     private func setupSubviews() {
         contentView.addSubview(categoryNameLabel)
         contentView.addSubview(categoryLogo)
     }
     
+    // Function which setup constraints
     private func setupConstraints() {
         categoryNameLabel.snp.makeConstraints { maker in
             maker.left.equalToSuperview().inset(15)
