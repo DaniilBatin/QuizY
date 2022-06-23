@@ -1,13 +1,13 @@
 //
-//  Extention.swift
+//  UIView .swift
 //  QuizY
 //
-//  Created by Daniil Batin on 23.05.2022.
+//  Created by Daniil Batin on 23.06.2022.
 //
 
-import Foundation
-import UIKit
+
 import SnapKit
+
 
 extension UIView {
     
@@ -22,14 +22,5 @@ extension UIView {
             return self.snp
         #endif
     }
+
 }
-
-extension CustomCell {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.layer.cornerRadius = 15
-        self.layer.masksToBounds = true
-    }
-}
-
-

@@ -15,6 +15,7 @@ class CustomCell: UICollectionViewCell {
         label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .darkGray
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -27,7 +28,6 @@ class CustomCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setupSubviews()
         setupConstraints()
     }
