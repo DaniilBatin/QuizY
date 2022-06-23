@@ -11,7 +11,7 @@ extension CategoryViewController:  UICollectionViewDataSource, UICollectionViewD
     
     // Amount of cell
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.filterArray.count
+        return presenter.count
     }
 
     // Create cell
@@ -36,8 +36,6 @@ extension CategoryViewController:  UICollectionViewDataSource, UICollectionViewD
     // Action when select item selected
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let questionViewController = QuestionViewController(presenter.filterArray[indexPath.item])
-
-        
         navigationController?.pushViewController(questionViewController, animated: true)
     }
 
