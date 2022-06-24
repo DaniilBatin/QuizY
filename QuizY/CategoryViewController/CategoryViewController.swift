@@ -11,11 +11,8 @@ import SnapKit
 class CategoryViewController: UIViewController {
    
     
-
-//  private var categoryArray = [Category]()
     let categoryNameArray = ["Geography", "Just desserts", "Lakes, rivers", "Word origins", "People",
                                        "Sports stars", "The elements", "Movies", "Stock symbols", "Pop music"]
-//    private var filteredData = [String]()
     
     let presenter = CategoryPresenter()
     

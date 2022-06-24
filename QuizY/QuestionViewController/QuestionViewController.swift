@@ -15,12 +15,50 @@ class QuestionViewController: UIViewController {
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 40)
-        label.textColor = .black
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.text = "Question:"
         return label
     }()
+    
+    private lazy var timerLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 20)
+        label.textAlignment = .center
+        label.text = "Time for answer: 00:00"
+        return label
+    }()
+    
+    private lazy var currentQuestionLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 20)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.text = "Test text Test text Test text Test text Test text Test text Test text Test text Test text Test text Test text Test text »"
+        return label
+    }()
+    
+    private lazy var contentQustionView: UIView = {
+        let contentView = UIView()
+        contentView.backgroundColor = .systemGray3
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        contentView.layer.shadowRadius = 10.0
+        contentView.layer.shadowOpacity = 0.2
+        contentView.layer.cornerRadius = 15
+        contentView.layer.masksToBounds = false
+        return contentView
+    }()
+    
+    private lazy var answerButton: UIButton = {
+        let answerButton = UIButton(configuration: .gray(), primaryAction: nil)
+        answerButton.frame.size.height = 40
+        answerButton.setTitle("Answer", for: .normal)
+        answerButton.setTitleColor(.systemGray2, for: .highlighted)
+        return answerButton
+    }()
+    
     
     
     override func viewDidLoad() {
@@ -41,15 +79,44 @@ class QuestionViewController: UIViewController {
     // Function which setup subviews on main view
     private func setupSubviews() {
         view.addSubview(questionLabel)
+        view.addSubview(contentQustionView)
+        view.addSubview(answerButton)
+        view.addSubview(timerLabel)
+        contentQustionView.addSubview(currentQuestionLabel)
         view.backgroundColor = .systemBackground
     }
     
     // Function which setup constraints
     private func setupConstraints() {
         questionLabel.snp.makeConstraints { maker in
-            maker.width.equalTo(self.view.snp.width)
-//            maker.right.equalTo(self.view.snp.right)
+            maker.left.equalToSuperview()
+            maker.right.equalToSuperview()
             maker.top.equalTo(self.view.safeArea.top)
+        }
+        
+        contentQustionView.snp.makeConstraints { maker in
+            maker.left.equalToSuperview().inset(15)
+            maker.right.equalToSuperview().inset(15)
+            maker.top.equalTo(questionLabel.snp.bottom).inset(-60)
+            maker.bottom.equalTo(timerLabel.snp.top).inset(-60)
+        }
+        
+        timerLabel.snp.makeConstraints { maker in
+            maker.left.equalToSuperview()
+            maker.right.equalToSuperview()
+            maker.bottom.equalTo(answerButton.snp.top).inset(-50)
+        }
+        
+        answerButton.snp.makeConstraints { maker in
+            maker.left.equalToSuperview().inset(60)
+            maker.right.equalToSuperview().inset(60)
+            maker.bottom.equalTo(self.view.safeArea.bottom).inset(20)
+        }
+        
+        currentQuestionLabel.snp.makeConstraints { maker in
+            maker.left.equalToSuperview()
+            maker.right.equalToSuperview()
+            maker.centerWithinMargins.equalToSuperview()
         }
     }
         

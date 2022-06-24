@@ -30,6 +30,7 @@ class CustomCell: UICollectionViewCell {
         super.init(frame: frame)
         setupSubviews()
         setupConstraints()
+        self.contentView.backgroundColor = .systemGray
     }
     
     required init?(coder: NSCoder) {

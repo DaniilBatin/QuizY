@@ -18,7 +18,7 @@ extension CategoryViewController:  UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyReuseID", for: indexPath) as? CustomCell else {return UICollectionViewCell()}
         cell.configure(with: presenter.filterArray[indexPath.item])
-        cell.backgroundColor = .systemGray
+//        cell.backgroundColor = .systemGray
         return cell
     }
 
