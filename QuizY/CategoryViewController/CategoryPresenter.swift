@@ -7,13 +7,20 @@
 
 import Foundation
 
+protocol CategoryPresenterProvider {
+    var filterArray: [CategoryType] {get}
+    var count: Int {get}
+    func createFilterArray(_ currentArray:[CategoryType])
+    
+}
 
-class CategoryPresenter {
+class CategoryPresenter: CategoryPresenterProvider {
     
-    var filterArray: [String] = []
     
+    
+    var filterArray: [CategoryType] = []
   
-    func createFilterArray(_ currentArray: [String]) {
+    func createFilterArray(_ currentArray: [CategoryType]) {
         filterArray = currentArray
     }
     

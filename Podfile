@@ -7,6 +7,7 @@ target 'QuizY' do
 
   # Pods for QuizY
 
+  pod 'Alamofire'
   pod 'SnapKit'	
   target 'QuizYTests' do
     inherit! :search_paths

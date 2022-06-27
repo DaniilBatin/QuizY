@@ -11,8 +11,8 @@ import SnapKit
 class CategoryViewController: UIViewController {
    
     
-    let categoryNameArray = ["Geography", "Just desserts", "Lakes, rivers", "Word origins", "People",
-                                       "Sports stars", "The elements", "Movies", "Stock symbols", "Pop music"]
+    let categoryNameArray = CategoryType.allCases
+        
     
     let presenter = CategoryPresenter()
     
@@ -45,6 +45,7 @@ class CategoryViewController: UIViewController {
         setupSubviews()
         setupConstraints()
         
+//        let categoryNameCollection = categoryNameArray.map{$0.description}
         presenter.createFilterArray(categoryNameArray)
        
     }

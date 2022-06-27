@@ -17,7 +17,7 @@ extension CategoryViewController:  UICollectionViewDataSource, UICollectionViewD
     // Create cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyReuseID", for: indexPath) as? CustomCell else {return UICollectionViewCell()}
-        cell.configure(with: presenter.filterArray[indexPath.item])
+        cell.configure(with: presenter.filterArray[indexPath.item].description)
 //        cell.backgroundColor = .systemGray
         return cell
     }
@@ -35,7 +35,9 @@ extension CategoryViewController:  UICollectionViewDataSource, UICollectionViewD
 
     // Action when select item selected
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let questionViewController = QuestionViewController(presenter.filterArray[indexPath.item])
+        let presenter = QuestionPresenter(presenter.filterArray[indexPath.item])
+        let questionViewController = QuestionViewController(presenter)
+        presenter.view = questionViewController
         navigationController?.pushViewController(questionViewController, animated: true)
     }
 

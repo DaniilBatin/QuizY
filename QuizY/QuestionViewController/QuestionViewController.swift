@@ -8,9 +8,14 @@
 import UIKit
 import SnapKit
 
+protocol QuestionViewProvider: AnyObject {
+    func updateView(_ question: String)
+}
+
 class QuestionViewController: UIViewController {
 
     private var currentCategory:String?
+    private let presenter:QuestionPresenterProvider
     
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
@@ -35,7 +40,6 @@ class QuestionViewController: UIViewController {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.text = "Test text Test text Test text Test text Test text Test text Test text Test text Test text Test text Test text Test text »"
         return label
     }()
     
@@ -65,11 +69,12 @@ class QuestionViewController: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         setupConstraints()
+        presenter.onLoad()
     }
     
-    init(_ selectCategory:String) {
+    init(_ presenter:QuestionPresenterProvider) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
-        currentCategory = selectCategory
     }
     
     required init?(coder: NSCoder) {
@@ -95,8 +100,8 @@ class QuestionViewController: UIViewController {
         }
         
         contentQustionView.snp.makeConstraints { maker in
-            maker.left.equalToSuperview().inset(15)
-            maker.right.equalToSuperview().inset(15)
+            maker.left.equalToSuperview().inset(25)
+            maker.right.equalToSuperview().inset(25)
             maker.top.equalTo(questionLabel.snp.bottom).inset(-60)
             maker.bottom.equalTo(timerLabel.snp.top).inset(-60)
         }
@@ -114,11 +119,27 @@ class QuestionViewController: UIViewController {
         }
         
         currentQuestionLabel.snp.makeConstraints { maker in
-            maker.left.equalToSuperview()
-            maker.right.equalToSuperview()
+            maker.left.equalToSuperview().inset(15)
+            maker.right.equalToSuperview().inset(15)
             maker.centerWithinMargins.equalToSuperview()
         }
     }
         
+    
         
+}
+
+extension QuestionViewController : QuestionViewProvider {
+    func updateView(_ question: String) {
+        if question != "" {
+            currentQuestionLabel.text = question
+        } else {
+            currentQuestionLabel.text = "Error with question, please Tap on answer button"
+        }
+    
+        
+    }
+    
+    
+    
 }
