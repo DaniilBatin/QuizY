@@ -51,12 +51,19 @@ enum CategoryType: Int, CustomStringConvertible, CaseIterable {
 protocol QuestionPresenterProvider: AnyObject {
     func onLoad()
     var currentQuestion: CurrentQuestionModel? {get}
+    func createAlertWithAnswer(_ view: UIViewController)
 }
 
 
 class QuestionPresenter: QuestionPresenterProvider {
     
     var currentQuestion: CurrentQuestionModel?
+    let secondQueue = DispatchQueue.global(qos: .utility)
+//    var timerCounting = false
+//    var gameTimer: Timer = Timer()
+    
+    var timer = Timer()
+    var durationTime = 20
     
     weak var view:QuestionViewProvider?
     private let categoryType:CategoryType
@@ -78,4 +85,33 @@ class QuestionPresenter: QuestionPresenterProvider {
             }
         }
     }
+    
+    func createAlertWithAnswer(_ view: UIViewController) {
+        guard let answer = currentQuestion?.answer else {return}
+        let alert = UIAlertController(title: "Answer",
+                                      message: answer,
+                                      preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title:"Next question", style:.cancel, handler: { _ in
+            self.onLoad()
+            
+        }))
+        view.present(alert, animated: true)
+    }
+    
+//    func startTimer(_ label: UILabel) {
+//        DispatchQueue.global(qos: .utility).sync {
+//            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerAction)), userInfo: nil, repeats: true)
+//        }
+//    }
+//    
+//    @objc func timerAction() {
+//        durationTime -= 1
+//        timerLabel.text = "Time for answer: \(durationTime) sec"
+//        if durationTime == 0 {
+//            timer.invalidate()
+//            createAlertWithAnswer(view)
+//        }
+//    }
+    
+    
 }

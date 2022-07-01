@@ -10,12 +10,14 @@ import SnapKit
 
 protocol QuestionViewProvider: AnyObject {
     func updateView(_ question: String)
+//    func present(_ alert:UIAlertController, _ animated:Bool)
+    func startTimer()
 }
 
 class QuestionViewController: UIViewController {
 
     private var currentCategory:String?
-    private let presenter:QuestionPresenterProvider
+    let presenter:QuestionPresenterProvider
     
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
@@ -26,15 +28,15 @@ class QuestionViewController: UIViewController {
         return label
     }()
     
-    private lazy var timerLabel: UILabel = {
+    lazy var timerLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20)
         label.textAlignment = .center
-        label.text = "Time for answer: 00:00"
+        label.text = "Time for answer: 20 sec"
         return label
     }()
     
-    private lazy var currentQuestionLabel: UILabel = {
+    lazy var currentQuestionLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
         label.numberOfLines = 0
@@ -60,16 +62,24 @@ class QuestionViewController: UIViewController {
         answerButton.frame.size.height = 40
         answerButton.setTitle("Answer", for: .normal)
         answerButton.setTitleColor(.systemGray2, for: .highlighted)
+        answerButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         return answerButton
     }()
     
+    var timer = Timer()
+    var durationTime = 20
     
+    @objc func showAlert() {
+        presenter.createAlertWithAnswer(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
         setupConstraints()
         presenter.onLoad()
+        startTimer()
+        
     }
     
     init(_ presenter:QuestionPresenterProvider) {
@@ -125,21 +135,24 @@ class QuestionViewController: UIViewController {
         }
     }
         
+//    func startTimer() {
+//        DispatchQueue.global(qos: .utility).sync {
+//            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+//        }
+//    }
+//    
+//    @objc func timerAction() {
+//        durationTime -= 1
+//        timerLabel.text = "Time for answer: \(durationTime) sec"
+//        if durationTime == 0 {
+//            timer.invalidate()
+//            presenter.createAlertWithAnswer(self)
+//        }
+//    }
     
         
 }
 
-extension QuestionViewController : QuestionViewProvider {
-    func updateView(_ question: String) {
-        if question != "" {
-            currentQuestionLabel.text = question
-        } else {
-            currentQuestionLabel.text = "Error with question, please Tap on answer button"
-        }
-    
-        
-    }
     
     
-    
-}
+
