@@ -51,8 +51,11 @@ enum CategoryType: Int, CustomStringConvertible, CaseIterable {
 protocol QuestionPresenterProvider: AnyObject {
     func onLoad()
     var currentQuestion: CurrentQuestionModel? {get}
-    func createAlertWithAnswer(_ view: UIViewController)
-    func startTimer() 
+    func createAlertWithAnswer()
+    func startTimer()
+    
+    var timer:Timer {get}
+    var durationTime: Int {get set}
 }
 
 
@@ -87,18 +90,9 @@ class QuestionPresenter: QuestionPresenterProvider {
         }
     }
     
-    func createAlertWithAnswer(_ view: UIViewController) {
+    func createAlertWithAnswer() {
         guard let answer = currentQuestion?.answer else {return}
-        let alert = UIAlertController(title: "Answer",
-                                      message: answer,
-                                      preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title:"Next question", style:.cancel, handler: { _ in
-            self.onLoad()
-            self.timer.invalidate()
-            self.startTimer()
-            self.durationTime = 21
-        }))
-        view.present(alert, animated: true)
+        view?.createAlert(answer)
     }
     
     func startTimer() {
@@ -112,8 +106,8 @@ class QuestionPresenter: QuestionPresenterProvider {
         self.view?.updateTimerLabel(durationTime)
         if durationTime == 0 {
             timer.invalidate()
-            guard let view = view else {return}
-            createAlertWithAnswer(view as! UIViewController)
+//            guard let view = view else {return}
+            createAlertWithAnswer()
         }
     }
     

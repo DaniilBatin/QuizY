@@ -22,7 +22,53 @@ class QuizYUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    func testCorrectlySearchFieldWorking() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
 
+        app.searchFields["Search"].tap()
+        app.searchFields["Search"].typeText("Stock")
+      
+        XCTAssert(app.cells.staticTexts["Stock symbols"].exists)
+    }
+    
+    func testScrollUICollectionView() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+        
+        app.swipeDown()
+        app.swipeUp()
+                
+        XCTAssert(app.cells.staticTexts["Pop music"].exists)
+
+      
+    }
+    
+    func testAlertButton() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        app.swipeUp()
+        app.cells.staticTexts["Pop music"].tap()
+        app.wait(for: .notRunning, timeout: 2.0)
+        app.buttons.staticTexts["Answer"].tap()
+                        
+        XCTAssert(app.alerts["Answer"].exists)
+    }
+    
+    
+    func testAlertAfterTimer() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        app.cells.staticTexts["Museums"].tap()
+        app.wait(for: .notRunning, timeout: 21.0)
+                        
+        XCTAssert(app.alerts["Answer"].exists)
+    }
+    
     
 
     func testLaunchPerformance() throws {

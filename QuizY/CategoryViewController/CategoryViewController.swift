@@ -44,7 +44,7 @@ class CategoryViewController: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         setupConstraints()
-        
+        removeKeyboard()
 //        let categoryNameCollection = categoryNameArray.map{$0.description}
         presenter.createFilterArray(categoryNameArray)
        

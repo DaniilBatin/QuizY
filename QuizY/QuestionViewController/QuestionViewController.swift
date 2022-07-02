@@ -11,8 +11,7 @@ import SnapKit
 protocol QuestionViewProvider: AnyObject {
     func updateView(_ question: String)
     func updateTimerLabel(_ timerNumber: Int)
-//    func present(_ alert:UIAlertController, _ animated:Bool)
-//    func startTimer()
+    func createAlert(_ message: String) 
 }
 
 class QuestionViewController: UIViewController {
@@ -71,7 +70,7 @@ class QuestionViewController: UIViewController {
     var durationTime = 20
     
     @objc func showAlert() {
-        presenter.createAlertWithAnswer(self)
+        presenter.createAlertWithAnswer()
     }
     
     override func viewDidLoad() {
