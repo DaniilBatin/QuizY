@@ -10,8 +10,9 @@ import SnapKit
 
 protocol QuestionViewProvider: AnyObject {
     func updateView(_ question: String)
+    func updateTimerLabel(_ timerNumber: Int)
 //    func present(_ alert:UIAlertController, _ animated:Bool)
-    func startTimer()
+//    func startTimer()
 }
 
 class QuestionViewController: UIViewController {
@@ -78,7 +79,7 @@ class QuestionViewController: UIViewController {
         setupSubviews()
         setupConstraints()
         presenter.onLoad()
-        startTimer()
+        presenter.startTimer()
         
     }
     
@@ -135,21 +136,7 @@ class QuestionViewController: UIViewController {
         }
     }
         
-//    func startTimer() {
-//        DispatchQueue.global(qos: .utility).sync {
-//            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
-//        }
-//    }
-//    
-//    @objc func timerAction() {
-//        durationTime -= 1
-//        timerLabel.text = "Time for answer: \(durationTime) sec"
-//        if durationTime == 0 {
-//            timer.invalidate()
-//            presenter.createAlertWithAnswer(self)
-//        }
-//    }
-    
+   
         
 }
 

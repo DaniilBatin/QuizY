@@ -16,23 +16,11 @@ extension QuestionViewController : QuestionViewProvider {
         } else {
             currentQuestionLabel.text = "Error with question, please Tap on answer button"
         }
-    
-        
     }
     
-    func startTimer() {
-        DispatchQueue.global(qos: .utility).sync {
-            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
-        }
+    func updateTimerLabel(_ timerNumber: Int) {
+        timerLabel.text = "Time for answer: \(timerNumber) sec"
     }
     
-    @objc func timerAction() {
-        durationTime -= 1
-        timerLabel.text = "Time for answer: \(durationTime) sec"
-        if durationTime == 0 {
-            timer.invalidate()
-            presenter.createAlertWithAnswer(self)
-        }
-    }
     
 }

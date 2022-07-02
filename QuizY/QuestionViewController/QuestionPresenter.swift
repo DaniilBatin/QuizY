@@ -52,6 +52,7 @@ protocol QuestionPresenterProvider: AnyObject {
     func onLoad()
     var currentQuestion: CurrentQuestionModel? {get}
     func createAlertWithAnswer(_ view: UIViewController)
+    func startTimer() 
 }
 
 
@@ -93,25 +94,28 @@ class QuestionPresenter: QuestionPresenterProvider {
                                       preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title:"Next question", style:.cancel, handler: { _ in
             self.onLoad()
-            
+            self.timer.invalidate()
+            self.startTimer()
+            self.durationTime = 21
         }))
         view.present(alert, animated: true)
     }
     
-//    func startTimer(_ label: UILabel) {
-//        DispatchQueue.global(qos: .utility).sync {
-//            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerAction)), userInfo: nil, repeats: true)
-//        }
-//    }
-//    
-//    @objc func timerAction() {
-//        durationTime -= 1
-//        timerLabel.text = "Time for answer: \(durationTime) sec"
-//        if durationTime == 0 {
-//            timer.invalidate()
-//            createAlertWithAnswer(view)
-//        }
-//    }
+    func startTimer() {
+        DispatchQueue.global(qos: .utility).sync {
+            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func timerAction() {
+        durationTime -= 1
+        self.view?.updateTimerLabel(durationTime)
+        if durationTime == 0 {
+            timer.invalidate()
+            guard let view = view else {return}
+            createAlertWithAnswer(view as! UIViewController)
+        }
+    }
     
     
 }
