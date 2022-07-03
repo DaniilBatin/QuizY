@@ -10,6 +10,7 @@ import UIKit
 
 extension QuestionViewController : QuestionViewProvider {
    
+    //Function which update currentQuestionLabel
     func updateView(_ question: String) {
         if question != "" {
             currentQuestionLabel.text = question
@@ -18,10 +19,12 @@ extension QuestionViewController : QuestionViewProvider {
         }
     }
     
+    //Function which update timerLabel
     func updateTimerLabel(_ timerNumber: Int) {
         timerLabel.text = "Time for answer: \(timerNumber) sec"
     }
     
+    //Function which create alert with answer 
     func createAlert(_ message: String) {
         let alert = UIAlertController(title: "Answer",
                                       message: message,

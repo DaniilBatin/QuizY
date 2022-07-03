@@ -16,8 +16,10 @@ protocol QuestionViewProvider: AnyObject {
 
 class QuestionViewController: UIViewController {
 
-    private var currentCategory:String?
     let presenter:QuestionPresenterProvider
+    private var currentCategory:String?
+    private let timer = Timer()
+    private var durationTime = 20
     
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
@@ -66,12 +68,13 @@ class QuestionViewController: UIViewController {
         return answerButton
     }()
     
-    var timer = Timer()
-    var durationTime = 20
-    
     @objc func showAlert() {
         presenter.createAlertWithAnswer()
+        let feedback = UINotificationFeedbackGenerator()
+        feedback.notificationOccurred(.warning)
     }
+    
+    //MARK: ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()

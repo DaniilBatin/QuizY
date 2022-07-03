@@ -14,6 +14,8 @@ protocol StatucCodeHandable {
 }
 
 extension NetworkService: StatucCodeHandable {
+    
+    //Function which handle status code from server
     func handleServerStatusCode(_ code: Int, completion: @escaping StatusCodeValidationCompletion) {
         switch HTTPStatusCode(rawValue: code) {
         case .success:

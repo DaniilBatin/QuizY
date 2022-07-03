@@ -16,16 +16,17 @@ protocol CategoryPresenterProvider {
 
 class CategoryPresenter: CategoryPresenterProvider {
     
-    
-    
     var filterArray: [CategoryType] = []
-  
-    func createFilterArray(_ currentArray: [CategoryType]) {
-        filterArray = currentArray
-    }
     
     var count : Int  {
         return filterArray.count
     }
+    
+    //Function which create filter array and take in another array
+    func createFilterArray(_ currentArray: [CategoryType]) {
+        filterArray = currentArray
+    }
+    
+ 
     
 }

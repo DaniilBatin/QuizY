@@ -14,12 +14,13 @@ protocol NetworkServiceContext {
 }
 
 class NetworkService: NetworkServiceContext {
-    static let mainUrl = "http://jservice.io/api/category?id="
     
+    static let mainUrl = "http://jservice.io/api/category?id="
     static let shared:NetworkServiceContext = NetworkService()
     
     private init() {}
     
+    //Function which make a request by Alamofire and decode data
     func getCategory(id: Int, completion: @escaping CategoryCompletion) {
         let fullUrl = "\(NetworkService.mainUrl)\(id)"
         AF.request(fullUrl).validate(statusCode: 200..<299).responseData {  afData in

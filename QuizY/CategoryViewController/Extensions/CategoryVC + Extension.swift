@@ -8,17 +8,14 @@
 import Foundation
 import UIKit
 
-extension CategoryViewController {
+extension CategoryViewController:UITextFieldDelegate {
     
+    //Function which remove keyboard when user tap on display
     func removeKeyboard() {
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapScreen.cancelsTouchesInView = false
         view.addGestureRecognizer(tapScreen)
-       
     }
-    
-
-
 
 @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
     view.endEditing(true)

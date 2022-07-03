@@ -8,6 +8,7 @@
 import Foundation
 
 struct QuizCategoryModel: Decodable {
+    
     let questions: [QuestionModel]
     
     enum CodingKeys: String, CodingKey {
@@ -15,7 +16,3 @@ struct QuizCategoryModel: Decodable {
     }
 }
 
-struct QuestionModel: Decodable {
-    let answer: String
-    let question: String
-}

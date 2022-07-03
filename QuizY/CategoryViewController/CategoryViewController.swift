@@ -10,10 +10,7 @@ import SnapKit
 
 class CategoryViewController: UIViewController {
    
-    
     let categoryNameArray = CategoryType.allCases
-        
-    
     let presenter = CategoryPresenter()
     
     lazy var mainCollectionView: UICollectionView = {
@@ -34,6 +31,7 @@ class CategoryViewController: UIViewController {
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Search"
+        searchBar.searchBarStyle = .minimal
         searchBar.delegate = self
         return searchBar
     }()

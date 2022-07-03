@@ -10,6 +10,7 @@ import UIKit
 
 extension CustomCell {
     
+    //Make rounding for custom cell
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = 15

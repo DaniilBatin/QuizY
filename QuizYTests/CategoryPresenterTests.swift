@@ -23,7 +23,7 @@ class CategoryPresenterTests: XCTestCase {
     }
 
     func testEmptyFilterArray() {
-        //Given
+        
         XCTAssertTrue(sut.filterArray.isEmpty)
         XCTAssertEqual(sut.count, 0)
     }
